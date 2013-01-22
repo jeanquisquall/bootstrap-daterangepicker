@@ -37,19 +37,18 @@
            parentEl: $('#range-wrap'),
            opensV: 'top',
            ranges: {
-              '± 1 an': [moment(startDate).subtract('years', 1), moment(startDate).add('years', 1)],
-              '± 6 mois': [moment(startDate).subtract('months', 6), moment(startDate).add('months', 6)],
-              '± 2 mois': [moment(startDate).subtract('months', 2), moment(startDate).add('months', 2)],
-              '± 1 mois': [moment(startDate).subtract('months', 1), moment(startDate).add('months', 1)],
-              '± 14 jours': [moment(startDate).subtract('days', 14), moment(startDate).add('days', 14)],
-              '± 7 jours': [moment(startDate).subtract('days', 7), moment(startDate).add('days', 7)]
-            },
-           defaultRange: '± 7 jours',
-           separators: [2, 5],
-           customRangeChoice: true,
+             '± 1 an': [moment(startDate).subtract('years', 1), moment(startDate).add('years', 1)],
+             '± 6 mois': [moment(startDate).subtract('months', 6), moment(startDate).add('months', 6)],
+             '± 12 semaines': [moment(startDate).subtract('weeks', 12), moment(startDate).add('weeks', 12)],
+             '± 4 semaines': [moment(startDate).subtract('weeks', 4), moment(startDate).add('weeks', 4)]
+           },
+           defaultRange: '± 4 semaines',
+           separators: [2],
            calendarMinViewMode: 'days',
            calendarStartView: 'month',
            quarterlyView: false,
+           weeklyView: true,
+
            // minDate: moment("<%= @report.oldest_period %>"),
            currentDate: startDate
            // locale: {

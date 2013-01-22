@@ -23,6 +23,7 @@
         this.calendarMinViewMode = 'days';
         this.calendarStartView = 'month';
         this.quarterlyView = false;        
+        this.weeklyView = false;
         this.minDate = moment("01-01-2001", "MM-DD-YYYY");
         this.maxDate = false;
         this.changed = false;
@@ -151,6 +152,10 @@
             
             if (typeof options.quarterlyView === 'boolean') {
               this.quarterlyView = options.quarterlyView;
+            }
+
+            if (typeof options.weeklyView === 'boolean') {
+              this.weeklyView = options.weeklyView;
             }
             
             if (typeof options.defaultRange === 'string') {
@@ -373,6 +378,7 @@
             endDate: this.currentDate.subtract('days', 1).format('MM/DD/YYYY'),
             minViewMode: this.calendarMinViewMode,
             quarterlyView: this.quarterlyView,
+            weeklyView: this.weeklyView,
             startView: this.calendarStartView,
             todayHighlight: true,
             todayBtn: true
@@ -384,6 +390,7 @@
             startDate: this.currentDate.add('days', 1).format('MM/DD/YYYY'),
             minViewMode: this.calendarMinViewMode,
             quarterlyView: this.quarterlyView,
+            weeklyView: this.weeklyView,
             startView: this.calendarStartView,
             todayHighlight: true,
             todayBtn: true
