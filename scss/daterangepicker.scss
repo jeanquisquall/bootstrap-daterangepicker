@@ -16,27 +16,30 @@
   -moz-border-radius: 4px;
   border-radius: 4px;
 
-  &.opensbottomleft:before {
-    position: absolute;
-    top: -7px;
-    right: 9px;
-    display: inline-block;
-    border-right: 7px solid transparent;
-    border-bottom: 7px solid #ccc;
-    border-left: 7px solid transparent;
-    border-bottom-color: rgba(0, 0, 0, 0.2);
-    content: '';
-  }
+  &.opensbottomleft {
+    top: 100%;
+    &:before {
+      position: absolute;
+      top: -7px;
+      right: 9px;
+      display: inline-block;
+      border-right: 7px solid transparent;
+      border-bottom: 7px solid #ccc;
+      border-left: 7px solid transparent;
+      border-bottom-color: rgba(0, 0, 0, 0.2);
+      content: '';
+    }
 
-  &.opensbottomleft:after {
-    position: absolute;
-    top: -6px;
-    right: 10px;
-    display: inline-block;
-    border-right: 6px solid transparent;
-    border-bottom: 6px solid #fff;
-    border-left: 6px solid transparent;
-    content: '';
+    &:after {
+      position: absolute;
+      top: -6px;
+      right: 10px;
+      display: inline-block;
+      border-right: 6px solid transparent;
+      border-bottom: 6px solid #fff;
+      border-left: 6px solid transparent;
+      content: '';
+    }
   }
 
   &.openstopleft:before {
@@ -61,28 +64,32 @@
     border-left: 6px solid transparent;
     content: '';
   }
+  
+  &.opensbottomright {
+    top: 100%;
+  
+    &:before {
+      position: absolute;
+      top: -7px;
+      right: 9px;
+      display: inline-block;
+      border-right: 7px solid transparent;
+      border-bottom: 7px solid #ccc;
+      border-left: 7px solid transparent;
+      border-bottom-color: rgba(0, 0, 0, 0.2);
+      content: '';
+    }
 
-  &.opensbottomright:before {
-    position: absolute;
-    top: -7px;
-    right: 9px;
-    display: inline-block;
-    border-right: 7px solid transparent;
-    border-bottom: 7px solid #ccc;
-    border-left: 7px solid transparent;
-    border-bottom-color: rgba(0, 0, 0, 0.2);
-    content: '';
-  }
-
-  &.opensbottomright:after {
-    position: absolute;
-    top: -6px;
-    right: 10px;
-    display: inline-block;
-    border-right: 6px solid transparent;
-    border-bottom: 6px solid #f5f5f5;
-    border-left: 6px solid transparent;
-    content: '';
+    &:after {
+      position: absolute;
+      top: -6px;
+      right: 10px;
+      display: inline-block;
+      border-right: 6px solid transparent;
+      border-bottom: 6px solid #f5f5f5;
+      border-left: 6px solid transparent;
+      content: '';
+    }
   }
 
 

@@ -8,32 +8,34 @@
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px; }
-  .daterangepicker.opensbottomleft:before, .daterangepicker-popover.opensbottomleft:before {
-    position: absolute;
-    top: -7px;
-    right: 9px;
-    display: inline-block;
-    border-right: 7px solid transparent;
-    border-bottom: 7px solid #ccc;
-    border-left: 7px solid transparent;
-    border-bottom-color: rgba(0, 0, 0, 0.2);
-    content: ''; }
-  .daterangepicker.opensbottomleft:after, .daterangepicker-popover.opensbottomleft:after {
-    position: absolute;
-    top: -6px;
-    right: 10px;
-    display: inline-block;
-    border-right: 6px solid transparent;
-    border-bottom: 6px solid #fff;
-    border-left: 6px solid transparent;
-    content: ''; }
+  .daterangepicker.opensbottomleft, .daterangepicker-popover.opensbottomleft {
+    top: 100%; }
+    .daterangepicker.opensbottomleft:before, .daterangepicker-popover.opensbottomleft:before {
+      position: absolute;
+      top: -7px;
+      right: 9px;
+      display: inline-block;
+      border-right: 7px solid transparent;
+      border-bottom: 7px solid #cccccc;
+      border-left: 7px solid transparent;
+      border-bottom-color: rgba(0, 0, 0, 0.2);
+      content: ''; }
+    .daterangepicker.opensbottomleft:after, .daterangepicker-popover.opensbottomleft:after {
+      position: absolute;
+      top: -6px;
+      right: 10px;
+      display: inline-block;
+      border-right: 6px solid transparent;
+      border-bottom: 6px solid white;
+      border-left: 6px solid transparent;
+      content: ''; }
   .daterangepicker.openstopleft:before, .daterangepicker-popover.openstopleft:before {
     position: absolute;
     bottom: -7px;
     right: 9px;
     display: inline-block;
     border-right: 7px solid transparent;
-    border-top: 7px solid #ccc;
+    border-top: 7px solid #cccccc;
     border-left: 7px solid transparent;
     border-top-color: rgba(0, 0, 0, 0.2);
     content: ''; }
@@ -43,28 +45,30 @@
     right: 10px;
     display: inline-block;
     border-right: 6px solid transparent;
-    border-top: 6px solid #f5f5f5;
+    border-top: 6px solid whitesmoke;
     border-left: 6px solid transparent;
     content: ''; }
-  .daterangepicker.opensbottomright:before, .daterangepicker-popover.opensbottomright:before {
-    position: absolute;
-    top: -7px;
-    right: 9px;
-    display: inline-block;
-    border-right: 7px solid transparent;
-    border-bottom: 7px solid #ccc;
-    border-left: 7px solid transparent;
-    border-bottom-color: rgba(0, 0, 0, 0.2);
-    content: ''; }
-  .daterangepicker.opensbottomright:after, .daterangepicker-popover.opensbottomright:after {
-    position: absolute;
-    top: -6px;
-    right: 10px;
-    display: inline-block;
-    border-right: 6px solid transparent;
-    border-bottom: 6px solid #f5f5f5;
-    border-left: 6px solid transparent;
-    content: ''; }
+  .daterangepicker.opensbottomright, .daterangepicker-popover.opensbottomright {
+    top: 100%; }
+    .daterangepicker.opensbottomright:before, .daterangepicker-popover.opensbottomright:before {
+      position: absolute;
+      top: -7px;
+      right: 9px;
+      display: inline-block;
+      border-right: 7px solid transparent;
+      border-bottom: 7px solid #cccccc;
+      border-left: 7px solid transparent;
+      border-bottom-color: rgba(0, 0, 0, 0.2);
+      content: ''; }
+    .daterangepicker.opensbottomright:after, .daterangepicker-popover.opensbottomright:after {
+      position: absolute;
+      top: -6px;
+      right: 10px;
+      display: inline-block;
+      border-right: 6px solid transparent;
+      border-bottom: 6px solid whitesmoke;
+      border-left: 6px solid transparent;
+      content: ''; }
   .daterangepicker.openstopright:before, .daterangepicker-popover.openstopright:before {
     position: absolute;
     top: none;
@@ -72,7 +76,7 @@
     right: 9px;
     display: inline-block;
     border-right: 7px solid transparent;
-    border-top: 7px solid #ccc;
+    border-top: 7px solid #cccccc;
     border-left: 7px solid transparent;
     border-top-color: rgba(0, 0, 0, 0.2);
     border-bottom: none;
@@ -84,7 +88,7 @@
     right: 10px;
     display: inline-block;
     border-right: 6px solid transparent;
-    border-top: 6px solid #f5f5f5;
+    border-top: 6px solid whitesmoke;
     border-left: 6px solid transparent;
     border-bottom: none;
     content: ''; }
@@ -92,7 +96,7 @@
 .daterangepicker-popover {
   background-color: #f5f5f5;
   width: 650px;
-  border: 1px solid #ccc; }
+  border: 1px solid #cccccc; }
   .daterangepicker-popover .separator {
     height: 1px;
     margin: 9px 1px;
@@ -100,7 +104,7 @@
     overflow: hidden;
     background-color: #e5e5e5;
     border: none;
-    border-bottom: 1px solid #ffffff; }
+    border-bottom: 1px solid white; }
   .daterangepicker-popover .calendars table.calendars-table th {
     text-align: center; }
   .daterangepicker-popover .calendars table.calendars-table td {
@@ -135,14 +139,14 @@
     background-color: #f5f5f5; }
     .daterangepicker .ranges ul li {
       font-size: 13px;
-      border: 1px solid #f5f5f5;
+      border: 1px solid whitesmoke;
       color: #333;
       padding: 3px 12px 3px 5px;
       margin-bottom: 8px;
       cursor: pointer; }
       .daterangepicker .ranges ul li:hover {
         background: #009acb;
-        border: 1px solid #08c;
+        border: 1px solid #0088cc;
         color: #fff;
         -webkit-border-radius: 5px;
         -moz-border-radius: 5px;
@@ -162,7 +166,7 @@
         overflow: hidden;
         background-color: #e5e5e5;
         border: none;
-        border-bottom: 1px solid #ffffff; }
+        border-bottom: 1px solid white; }
       .daterangepicker .ranges ul li span.date-description {
         font-size: 11px;
         color: #888;
