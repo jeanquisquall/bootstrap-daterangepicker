@@ -287,17 +287,22 @@
             } else {
               top = 0 - container.outerHeight();
             }
+            // container.css({
+            //     top: top,
+            //     right: 0,
+            //     left: 'auto'
+            // });
             if (this.opens == 'left') {
                 container.css({
                     top: top,
-                    right: 0,
-                    left: 'auto'
+                    right: 'auto',
+                    left: 0
                 });
             } else {
                 container.css({
                     top: top,
-                    left: this.parentEl.width() - container.outerWidth(),
-                    right: 'auto'
+                    left: 'auto',
+                    right: 0
                 });
             }
         },

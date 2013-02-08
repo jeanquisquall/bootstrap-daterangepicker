@@ -13,9 +13,12 @@
       <script type="text/javascript" src="./js/daterangepicker.js"></script>
       <style>
           #range-wrap {
-            position: absolute;
-            top: 500px;
-            left: 600px;            
+            position: relative;
+            width: 20%;
+            margin: 200px auto;
+          }
+          div.btn {
+            width: 100%;
           }
       </style>
       
@@ -35,6 +38,7 @@
        $('#range').daterangepicker(
          {
            parentEl: $('#range-wrap'),
+           opens: 'left',
            opensV: 'bottom',
            ranges: {
              '± 1 an': [moment(startDate).subtract('years', 1), moment(startDate).add('years', 1)],
