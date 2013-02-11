@@ -5,7 +5,7 @@
 * @copyright: Copyright (c) 2012 Dan Grossman. All rights reserved.
 * @license: Licensed under Apache License v2.0. See http://www.apache.org/licenses/LICENSE-2.0
 * @website: http://www.improvely.com/
-* Modified by ERDIL
+* Modified by Aurélien Masson
 */
 !function ($) {
     function equals(date1, date2) {
@@ -43,6 +43,9 @@
             monthNames: moment().lang()['months'],
             firstDay: 0
         };
+        this.datepickerStartEndDate = this.currentDate.subtract('days', 1).format('MM/DD/YYYY'),
+        this.datepickerEndStartDate = this.currentDate.add('days', 1).format('MM/DD/YYYY'),
+
 
         localeObject = this.locale;
 
@@ -103,8 +106,11 @@
                         '</div>' +
                         '<div class="separator"></div>' +
                         '<div>' +
-                          '<button class="btn btn-main submit">Valider</button>' +
-                          '<button class="btn cancel">Annuler</button>' +
+                          '<span class="invalid-period alert alert-error">La date de début doit être inférieure à la date de fin</span>' +
+                          '<div class="pull-right">' + 
+                            '<button class="btn btn-main submit">Valider</button>' +
+                            '<button class="btn cancel">Annuler</button>' +
+                          '</div>' +
                         '</div>'
                      '</div>';
 
@@ -117,54 +123,39 @@
 
         if (hasOptions) {
 
-            if (typeof options.format == 'string')
-                this.format = options.format;
+            if (typeof options.format == 'string'){ this.format = options.format; }
 
-            if (typeof options.separator == 'string')
-                this.separator = options.separator;
+            if (typeof options.separator == 'string') {this.separator = options.separator;}
 
-            if (typeof options.startDate == 'object')
-                this.startDate = options.startDate;
+            if (typeof options.startDate == 'object') {this.startDate = options.startDate;}
 
-            if (typeof options.endDate == 'object')
-                this.endDate = options.endDate;
+            if (typeof options.endDate == 'object') {this.endDate = options.endDate;}
+            
+            if (typeof options.datepickerStartEndDate == 'object') {this.datepickerStartEndDate = options.datepickerStartEndDate.format('MM/DD/YYYY');}
 
-            if (typeof options.minDate == 'object')
-                this.minDate = options.minDate;
+            if (typeof options.datepickerEndStartDate == 'object') {this.datepickerEndStartDate = options.datepickerEndStartDate.format('MM/DD/YYYY');}
 
-            if (typeof options.maxDate == 'object')
-                this.maxDate = options.maxDate;
+            if (typeof options.minDate == 'object') {this.minDate = options.minDate;}
 
-            if (typeof options.currentDate == 'object')
-                this.currentDate = options.currentDate;
+            if (typeof options.maxDate == 'object') {this.maxDate = options.maxDate;}
+
+            if (typeof options.currentDate == 'object') {this.currentDate = options.currentDate;}
                 
             if (Object.prototype.toString.apply(options.separators) === '[object Array]') {
               this.separators = options.separators;
             }
             
-            if (typeof options.calendarMinViewMode === 'string') {
-              this.calendarMinViewMode = options.calendarMinViewMode;
-            }
+            if (typeof options.calendarMinViewMode === 'string') { this.calendarMinViewMode = options.calendarMinViewMode;}
             
-            if (typeof options.calendarStartView === 'string') {
-              this.calendarStartView = options.calendarStartView;
-            }
+            if (typeof options.calendarStartView === 'string') {this.calendarStartView = options.calendarStartView;}
             
-            if (typeof options.quarterlyView === 'boolean') {
-              this.quarterlyView = options.quarterlyView;
-            }
+            if (typeof options.quarterlyView === 'boolean') {this.quarterlyView = options.quarterlyView;}
 
-            if (typeof options.weeklyView === 'boolean') {
-              this.weeklyView = options.weeklyView;
-            }
+            if (typeof options.weeklyView === 'boolean') {this.weeklyView = options.weeklyView;}
             
-            if (typeof options.defaultRange === 'string') {
-              this.defaultRange = options.defaultRange;              
-            }
+            if (typeof options.defaultRange === 'string') {this.defaultRange = options.defaultRange;}
             
-            if (typeof options.opensV == 'string') {
-              this.opensV = options.opensV;
-            }            
+            if (typeof options.opensV == 'string') {this.opensV = options.opensV;}            
 
             if (typeof options.ranges == 'object') {
               for (var range in options.ranges) {
@@ -259,6 +250,7 @@
         
         this.createCalendars();        
         this.$customRangeContainer.hide();
+        $('span.invalid-period').hide();        
     };
 
     DateRangePicker.prototype = {
@@ -287,11 +279,6 @@
             } else {
               top = 0 - container.outerHeight();
             }
-            // container.css({
-            //     top: top,
-            //     right: 0,
-            //     left: 'auto'
-            // });
             if (this.opens == 'left') {
                 container.css({
                     top: top,
@@ -366,6 +353,11 @@
         },
         
         submitCustomRangePopover: function(e) {
+          var $button = $('button.submit');
+          if ($button.hasClass("disabled") || $button.prop('disabled') || $button.is(':disabled') || $button.attr('disabled') == 'disabled') {
+            return false;
+          }
+          
           this.startDate = moment(this.$calendarStart.data('datepicker').getDate());
           this.endDate = moment(this.$calendarEnd.data('datepicker').getDate());
           this.container.find('div.ranges li span.checkmark').removeClass('active');
@@ -375,35 +367,54 @@
         },
         
         createCalendars: function() {
+          var self = this;
           this.$calendarStart.datepicker({
             format: 'mm/dd/yyyy',
             weekStart: 1,
             language: 'fr', 
-            startDate: this.minDate.format('MM/DD/YYYY'),
-            endDate: this.currentDate.subtract('days', 1).format('MM/DD/YYYY'),
+            startDate: this.minDate.format('MM/DD/YYYY'),            
+            endDate: this.datepickerStartEndDate,
             minViewMode: this.calendarMinViewMode,
             quarterlyView: this.quarterlyView,
             weeklyView: this.weeklyView,
             startView: this.calendarStartView,
             todayHighlight: true,
             todayBtn: true
+          })
+          .on('changeDate', function(evt) {
+            self._customPeriodUpdated();
           });
           this.$calendarEnd.datepicker({
             format: 'mm/dd/yyyy',
             weekStart: 1,
             language: 'fr', 
-            startDate: this.currentDate.add('days', 1).format('MM/DD/YYYY'),
+            startDate: this.datepickerEndStartDate,
             minViewMode: this.calendarMinViewMode,
             quarterlyView: this.quarterlyView,
             weeklyView: this.weeklyView,
             startView: this.calendarStartView,
             todayHighlight: true,
             todayBtn: true
+          })
+          .on('changeDate', function(evt) {
+            self._customPeriodUpdated();
           });
           this.$calendarStart.datepicker('update', this.startDate.format('MM/DD/YYYY'));
           this.$calendarEnd.datepicker('update', this.endDate.format('MM/DD/YYYY'));          
+        },
+        
+        _customPeriodUpdated: function() {
+          var startDate = moment(this.$calendarStart.data('datepicker').getDate()),
+              endDate = moment(this.$calendarEnd.data('datepicker').getDate());          
+          if (startDate > endDate) {
+            $('span.invalid-period').show();
+            $('button.submit').addClass('disabled');
+          } else {
+            $('span.invalid-period').hide();
+            $('button.submit').removeClass('disabled');            
+          }         
         }
-    };
+    };    
 
     $.fn.daterangepicker = function (options, cb) {
       this.each(function() {

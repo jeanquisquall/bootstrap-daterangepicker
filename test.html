@@ -41,17 +41,19 @@
            opens: 'left',
            opensV: 'bottom',
            ranges: {
-             '± 1 an': [moment(startDate).subtract('years', 1), moment(startDate).add('years', 1)],
-             '± 6 mois': [moment(startDate).subtract('months', 6), moment(startDate).add('months', 6)],
-             '± 12 semaines': [moment(startDate).subtract('weeks', 12), moment(startDate).add('weeks', 12)],
-             '± 4 semaines': [moment(startDate).subtract('weeks', 4), moment(startDate).add('weeks', 4)]
+             '1 an': [moment(startDate).subtract('years', 1), moment(startDate)],
+             '6 mois': [moment(startDate).subtract('months', 6), moment(startDate)],
+             '12 semaines': [moment(startDate).subtract('weeks', 12), moment(startDate)],
+             '4 semaines': [moment(startDate).subtract('weeks', 4), moment(startDate)]
            },
-           defaultRange: '± 4 semaines',
+           defaultRange: '4 semaines',
            separators: [2],
            calendarMinViewMode: 'days',
            calendarStartView: 'month',
            quarterlyView: false,
-           weeklyView: true,
+           weeklyView: false,
+           datepickerStartEndDate: moment(startDate).add('years', 1), 
+           datepickerEndStartDate: moment(startDate).subtract('years', 1),
 
            // minDate: moment("<%= @report.oldest_period %>"),
            currentDate: startDate
